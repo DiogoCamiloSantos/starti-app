@@ -55,9 +55,11 @@ const LoginPage = () => {
                 </FormStyle>
                 <PartnerLoginWrapperStyle>
                     <PartnerLoginLabelWrapperStyle>
+                        <SvgUri uri={line} />
                         <LabelStyle size={12} color='grey'>
                             Ou acesse com
                         </LabelStyle>
+                        <SvgUri uri={line} />
                     </PartnerLoginLabelWrapperStyle>
                     <PartnerLoginOptionsWrapperStyle>
                         <PartnerLoginOptionStyle>
@@ -69,7 +71,7 @@ const LoginPage = () => {
                     </PartnerLoginOptionsWrapperStyle>
                     <LabelStyle size={12} color='grey'>
                         Ainda não possui um login?
-                        <LabelStyle color='#DD3F94'>{` cadastre-se :)`}</LabelStyle>
+                        <LabelStyle size={12} color='#DD3F94'>{` cadastre-se :)`}</LabelStyle>
                     </LabelStyle>
                 </PartnerLoginWrapperStyle>
             </BackgroundImageContainer>
@@ -96,7 +98,7 @@ const FormStyle = styled.View`
 
 const InputStyle = styled(TextInput)`
   height: ${height};
-  font-family: 'Comfortaa-Light';
+  font-family: 'Comfortaa-Regular';
   border-width: .5px;
   border-color: white;
   background-color: white;

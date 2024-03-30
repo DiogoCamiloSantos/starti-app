@@ -1,8 +1,8 @@
 import type { PropsWithChildren } from 'react';
 import React from 'react';
 import type { ViewStyle } from 'react-native';
-import { Animated, Easing, View } from 'react-native';
-import { SvgCssUri } from 'react-native-svg';
+import { Animated, Easing } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 import styled from 'styled-components/native';
 
 type SpinnerViewStyle = PropsWithChildren<{
@@ -16,6 +16,9 @@ type SpinnerViewStyle = PropsWithChildren<{
 const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
 const loading = resolveAssetSource(require('../../../assets/icons/loading.svg')).uri;
 
+
+const LoadingImageStyle = styled(SvgUri)`
+`;
 
 const SpinnerViewStyle: React.FC<SpinnerViewStyle> = (props) => {
     console.log(`props`, props);
@@ -43,6 +46,7 @@ const SpinnerViewStyle: React.FC<SpinnerViewStyle> = (props) => {
                 transform: [{ rotate: spin }]
             }}>
             {props.children}
+            <LoadingImageStyle uri={loading} style={props.style} height={props.height || 40} width={props.width || 40} />
         </Animated.View>
     );
 };

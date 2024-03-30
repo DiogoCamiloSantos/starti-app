@@ -3,7 +3,7 @@ import { Platform } from "react-native";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
 import Badge from "../Badge/Badge";
-import LabelStyle from "../Label/Label";
+import Label from "../Label/Label";
 
 const NavStyle = styled.View`
   width: 100%;
@@ -30,10 +30,6 @@ const NavStyle = styled.View`
     })}
 `
 
-const NameStyle = styled(LabelStyle)`
-    font-size: 14px;
-`
-
 const Nav = () => {
 
     const defaultTheme = useSelector((state: any) => state.theme);
@@ -45,7 +41,7 @@ const Nav = () => {
     
     return (
         <NavStyle>
-            <NameStyle>Diogo Camilo Santos</NameStyle>
+            <Label size={14}>Diogo Camilo Santos</Label>
             <Badge text="5000XP"></Badge>
         </NavStyle>
     );

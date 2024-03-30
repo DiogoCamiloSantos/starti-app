@@ -1,0 +1,15 @@
+<svg width="300" height="20" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definição das cores -->
+  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#DD3F94;stop-opacity:1" />
+    <stop offset="34%" style="stop-color:#DD3F94;stop-opacity:1;" />
+    <stop offset="33%" style="stop-color:#FFC23F;stop-opacity:1;" />
+    <stop offset="66%" style="stop-color:#FFC23F;stop-opacity:1" />
+    <stop offset="66%" style="stop-color:#68D9D6;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#68D9D6;stop-opacity:1;"/>
+  </linearGradient>
+
+
+  <!-- Barra de progresso -->
+  <rect  rx="8" x="0" y="0" width="100%" height="4%" fill="url(#grad1)" />
+</svg>

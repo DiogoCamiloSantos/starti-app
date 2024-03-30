@@ -10,8 +10,8 @@ interface ICardStyleProps {
 }
 
 let CardStyle = styled.View<ICardStyleProps>`
-    height: ${(props) => (props.height || '100px') + 'px'};
-    width: ${(props) => (props.width || '100px') + 'px'};
+    height: ${(props) => (props.height) ? props.height + `px` : 'auto' };
+    width: ${(props) => (props.width) ? props.width + `px` : 'auto'};
     background-color: ${props => props.theme.color.primary};
     border-radius: 25px;
     padding: 16px;

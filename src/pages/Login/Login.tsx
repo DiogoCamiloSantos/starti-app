@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import BackgroundImageContainer from '../../components/BackgroundImage/BackgroundImageContainer';
 import Button from '../../components/Button/Button';
-import LabelStyle from '../../components/Label/Label';
 import Loading from '../../components/Loading/Loading';
+import Label from '../../components/Label/Label';
 
 const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
 const logo_g = require('../../../assets/images/logo_g.png');
@@ -49,16 +49,16 @@ const LoginPage = () => {
                         onChangeText={setSenha}
                     />
                     <ButtonStyle onPress={handleLogin} isLoading={isLoading}>
-                        {!isLoading && <LabelStyle color='white' size={14}>ACESSAR</LabelStyle>}
+                        {!isLoading && <Label color='white' size={14}>ACESSAR</Label>}
                         {isLoading && <Loading />}
                     </ButtonStyle>
                 </FormStyle>
                 <PartnerLoginWrapperStyle>
                     <PartnerLoginLabelWrapperStyle>
                         <SvgUri uri={line} />
-                        <LabelStyle size={12} color='grey'>
+                        <Label size={12} color='grey'>
                             Ou acesse com
-                        </LabelStyle>
+                        </Label>
                         <SvgUri uri={line} />
                     </PartnerLoginLabelWrapperStyle>
                     <PartnerLoginOptionsWrapperStyle>
@@ -69,10 +69,10 @@ const LoginPage = () => {
                             <PartnerLoginOptionImageStyle source={logo_ln} />
                         </PartnerLoginOptionStyle>
                     </PartnerLoginOptionsWrapperStyle>
-                    <LabelStyle size={12} color='grey'>
+                    <Label size={12} color='grey'>
                         Ainda não possui um login?
-                        <LabelStyle size={12} color='#DD3F94'>{` cadastre-se :)`}</LabelStyle>
-                    </LabelStyle>
+                        <Label size={12} color='#DD3F94'>{` cadastre-se :)`}</Label>
+                    </Label>
                 </PartnerLoginWrapperStyle>
             </BackgroundImageContainer>
         </ContainerStyle>

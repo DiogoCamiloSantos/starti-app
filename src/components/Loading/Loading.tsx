@@ -9,8 +9,7 @@ type SpinnerViewStyle = PropsWithChildren<{
     style?: ViewStyle,
     duration?: number,
     loops?: number,
-    height?: number,
-    width?: number
+    size?: number;
 }>;
 
 const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
@@ -46,7 +45,7 @@ const SpinnerViewStyle: React.FC<SpinnerViewStyle> = (props) => {
                 transform: [{ rotate: spin }]
             }}>
             {props.children}
-            <LoadingImageStyle uri={loading} style={props.style} height={props.height || 40} width={props.width || 40} />
+            <LoadingImageStyle uri={loading} style={props.style} height={props.size || 40} width={props.size || 40} />
         </Animated.View>
     );
 };

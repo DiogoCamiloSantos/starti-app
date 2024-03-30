@@ -1,5 +1,8 @@
+import { NavigationHelpers } from "@react-navigation/native";
+import { useState } from "react";
 import { Platform } from "react-native";
 import styled from "styled-components/native";
+import { TabPageEnum } from "../../domain/enums/tab-page.enum";
 import TabItem from "./Itens/TabItem";
 
 const FooterStyle = styled.View`
@@ -28,20 +31,29 @@ const FooterStyle = styled.View`
 
 `
 
-export default function Footer(props: IFooter) {
+export default (props: IFooter) => {
+    const [activatedTabIndex, setActivatedTabIndex] = useState(TabPageEnum.Home);
+    const navigate = (tab: TabPageEnum) => {
+
+        props.navigation.navigate(tab);
+        console.log(`teste`);
+        
+        setActivatedTabIndex(tab);
+    };
 
     return (
         <FooterStyle>
-            <TabItem description="Níveis" icon="stats" onSelectedTab={() => props.onSelectedTab(0)} activated={props.activatedTabIndex === 0}></TabItem>
-            <TabItem description="Pesquisas" icon="search" onSelectedTab={() => props.onSelectedTab(1)} activated={props.activatedTabIndex === 1} />
-            <TabItem description="Início" icon="home" onSelectedTab={() => props.onSelectedTab(2)} activated={props.activatedTabIndex === 2} />
-            <TabItem description="Chat" icon="chat" onSelectedTab={() => props.onSelectedTab(3)} activated={props.activatedTabIndex === 3} />
-            <TabItem description="Perfil" icon="profile" onSelectedTab={() => props.onSelectedTab(4)} activated={props.activatedTabIndex === 4} />
+            <TabItem description={TabPageEnum.Levels} icon="stats" onSelectedTab={() => navigate(TabPageEnum.Levels)} activated={activatedTabIndex === TabPageEnum.Levels}></TabItem>
+            <TabItem description={TabPageEnum.Researchs} icon="search" onSelectedTab={() => navigate(TabPageEnum.Researchs)} activated={activatedTabIndex === TabPageEnum.Researchs} />
+            <TabItem description={TabPageEnum.Home} icon="home" onSelectedTab={() => navigate(TabPageEnum.Home)} activated={activatedTabIndex === TabPageEnum.Home} />
+            <TabItem description={TabPageEnum.Chat} icon="chat" onSelectedTab={() => navigate(TabPageEnum.Chat)} activated={activatedTabIndex === TabPageEnum.Chat} />
+            <TabItem description={TabPageEnum.Profile} icon="profile" onSelectedTab={() => navigate(TabPageEnum.Profile)} activated={activatedTabIndex === TabPageEnum.Profile} />
         </FooterStyle>
     )
 }
 
 interface IFooter {
-    onSelectedTab: Function,
-    activatedTabIndex: number
+    onSelectedTab?: Function,
+    activatedTabIndex?: number,
+    navigation: NavigationHelpers<any, any>;
 }

@@ -14,13 +14,13 @@ export default function ProfilePage() {
         dispatch({ type: "TOGGLE_AUTHENTICATION", payload: null });
     }
 
-    return <ScrollViewStyle >
+    return <ScrollViewStyle>
         <Card>
             <ButtonStyle onPress={logout}>
                 <LabelStyle color="white">SAIR</LabelStyle>
             </ButtonStyle>
         </Card>
-    </ScrollViewStyle >
+    </ScrollViewStyle>
 }
 
 const ScrollViewStyle = styled(ScrollView)`

@@ -1,7 +1,7 @@
 export enum TabPageEnum {
-    Levels,
-    Researchs,
-    Home,
-    Chat,
-    Profile
+    Levels = "Níveis",
+    Researchs = "Pesquisas",
+    Home = "Início",
+    Chat = "Chat",
+    Profile = "Perfil"
 }

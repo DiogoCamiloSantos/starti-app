@@ -10,7 +10,6 @@ interface ILabelStyleProps {
 }
 
 const LabelStyle = styled.Text<ILabelStyleProps>`
-    font-family: 'Comfortaa-Regular';
     font-size:  ${props => (props.size || 10) + 'px;' };
     text-align:  ${props => props.align || 'left' };
     color: ${props => (props.color || props.theme.color.font)};

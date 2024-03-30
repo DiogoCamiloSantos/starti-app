@@ -1,11 +1,14 @@
-import { forwardRef, useState } from "react";
-import { View, useWindowDimensions } from "react-native";
-import { TabView } from "react-native-tab-view";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { useState } from "react";
+import { View } from "react-native";
 import styled, { ThemeProvider } from "styled-components/native";
 import { useThemeSelector } from "../common/theme/default-theme";
+import BackgroundImageContainer from "../components/BackgroundImage/BackgroundImageContainer";
 import Footer from "../components/Footer/Footer";
+import Loading from "../components/Loading/Loading";
 import Nav from "../components/Nav/Nav";
-import { TabPageEnum } from "../domain/enums/tab-page.enum";
+import { TabPageEnum } from '../domain/enums/tab-page.enum';
 import ChatPage from "../pages/Home/Chat";
 import HomePage from "../pages/Home/Home";
 import LevelsPage from "../pages/Home/Levels";
@@ -13,87 +16,50 @@ import ProfilePage from "../pages/Home/Profile";
 import ResearchsPage from "../pages/Home/Researchs";
 import LoginPage from "../pages/Login/Login";
 import { useAuthenticationSelector } from "../redux/reducer/Authentication/authentication-selector";
-import BackgroundImageContainer from "../components/BackgroundImage/BackgroundImageContainer";
-import Loading from "../components/Loading/Loading";
 
+const Tab = createBottomTabNavigator();
 const RouterViewStyle = styled.View`
     background-color: ${props => props.theme.color.background};
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow-y: hidden;
-`
+`;
 
-const TabNavigationView = forwardRef((props, ref) => {
-    const layout = useWindowDimensions();
-    const [index, setIndex] = useState(0);
-    const [routes] = useState([
-        { key: String(TabPageEnum.Levels) },
-        { key: String(TabPageEnum.Researchs) },
-        { key: String(TabPageEnum.Home) },
-        { key: String(TabPageEnum.Chat) },
-        { key: String(TabPageEnum.Profile) },
-    ]);
+const NavigationContainerStyle = () => {
+    return <NavigationContainer>
+        <Tab.Navigator
+            screenOptions={{ header: () => <Nav /> }}
+            tabBar={props => <Footer {...props} />}
+            initialRouteName={TabPageEnum.Home}>
+            <Tab.Screen name={TabPageEnum.Levels} component={LevelsPage} />
+            <Tab.Screen name={TabPageEnum.Researchs} component={ResearchsPage} />
+            <Tab.Screen name={TabPageEnum.Home} component={HomePage} />
+            <Tab.Screen name={TabPageEnum.Chat} component={ChatPage} />
+            <Tab.Screen name={TabPageEnum.Profile} component={ProfilePage} />
+        </Tab.Navigator>
+    </NavigationContainer>;
+}
 
-    return <>
-        <Nav />
-        <TabView 
-            renderTabBar={() => null}
-            navigationState={{ index, routes }}
-            renderScene={({ route }) => {
-                switch (route.key) {
-                    case String(TabPageEnum.Levels):
-                        return index === TabPageEnum.Levels ? <LevelsPage /> : null;
-                    case String(TabPageEnum.Researchs):
-                        return index === TabPageEnum.Researchs ? <ResearchsPage /> : null;
-                    case String(TabPageEnum.Home):
-                        return index === TabPageEnum.Home ? <HomePage /> : null;
-                    case String(TabPageEnum.Chat):
-                        return index === TabPageEnum.Chat ? <ChatPage /> : null;
-                    case String(TabPageEnum.Profile):
-                        return index === TabPageEnum.Profile ? <ProfilePage /> : null;
-                    default:
-                        return null;
-                }
-            }}
-            onIndexChange={setIndex}
-            initialLayout={{ width: layout.width }}
-        />
-        <Footer onSelectedTab={setIndex} activatedTabIndex={index} />
-    </>
-});
-
-
-export default function RouterView() {
+export default () => {
     const theme = useThemeSelector();
     const authentication = useAuthenticationSelector();
-
     const [enable, setEnable] = useState(false);
 
-    console.log(`teste`, authentication);
-
-    setTimeout(()=> {
+    setTimeout(() => {
         setEnable(true);
     }, 10000);
-   
 
     return (
         <ThemeProvider theme={theme}>
             {!authentication && <LoginPage />}
             {(authentication && enable)
                 ? <RouterViewStyle>
-                    <TabNavigationView />
+                    <NavigationContainerStyle />
                 </RouterViewStyle>
-                : <BackgroundImageContainer style> 
-                    <View style={{paddingTop: 50}}>
-                        <Loading duration={10000} loops={7} height={80} width={80} />
+                : <BackgroundImageContainer>
+                    <View style={{ paddingTop: 50 }}>
+                        <Loading duration={10000} loops={7} size={60} />
                     </View>
                 </BackgroundImageContainer>
             }
         </ThemeProvider>
     )
 }
-
-const LoadingStyle = styled(Loading)`
-`

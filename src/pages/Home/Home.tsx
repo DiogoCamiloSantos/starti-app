@@ -7,6 +7,7 @@ import Card from "../../components/Card/Card";
 import Score from "../../components/Score/Score";
 import ScoreService from "../../core/service/Score/Score.service";
 
+
 export default function HomePage() {
     console.log('View - 3');
 

@@ -2,7 +2,7 @@ import { ScrollView, View } from "react-native";
 import Card from "../../components/Card/Card";
 import styled from "styled-components/native";
 import Button from "../../components/Button/Button";
-import Label from "../../components/Label/Label";
+import LabelStyle from "../../components/Label/Label";
 import { useDispatch } from "react-redux";
 
 export default function ProfilePage() {
@@ -17,7 +17,7 @@ export default function ProfilePage() {
     return <ScrollViewStyle >
         <Card>
             <ButtonStyle onPress={logout}>
-                <Label color="white">SAIR</Label>
+                <LabelStyle color="white">SAIR</LabelStyle>
             </ButtonStyle>
         </Card>
     </ScrollViewStyle >

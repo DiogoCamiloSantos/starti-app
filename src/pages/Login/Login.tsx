@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
 import { Image, Platform, TextInput, View } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import BackgroundImageContainer from '../../components/BackgroundImage/BackgroundImageContainer';
 import Button from '../../components/Button/Button';
-import Label from '../../components/Label/Label';
+import LabelStyle from '../../components/Label/Label';
 import Loading from '../../components/Loading/Loading';
-import LogoSvg from '../../components/Icons/LogoSvg';
-import LineSvg from '../../components/Icons/LineSvg';
 
 const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
 const logo_g = require('../../../assets/images/logo_g.png');
 const logo_ln = require('../../../assets/images/logo_ln.png');
 const logo = resolveAssetSource(require('../../../assets/icons/logo.svg')).uri;
 const line = resolveAssetSource(require('../../../assets/icons/line.svg')).uri;
-
 const height = '60px';
 
 const LoginPage = () => {
@@ -37,6 +35,7 @@ const LoginPage = () => {
     return (
         <ContainerStyle>
             <BackgroundImageContainer>
+                <Logo uri={logo}/>
                 <FormStyle>
                     <InputStyle
                         placeholder="Login"
@@ -50,15 +49,15 @@ const LoginPage = () => {
                         onChangeText={setSenha}
                     />
                     <ButtonStyle onPress={handleLogin} isLoading={isLoading}>
-                        {!isLoading && <Label color='white'>ACESSAR</Label>}
+                        {!isLoading && <LabelStyle color='white' size={14}>ACESSAR</LabelStyle>}
                         {isLoading && <Loading />}
                     </ButtonStyle>
                 </FormStyle>
                 <PartnerLoginWrapperStyle>
                     <PartnerLoginLabelWrapperStyle>
-                        <Label size={12} color='grey'>
+                        <LabelStyle size={12} color='grey'>
                             Ou acesse com
-                        </Label>
+                        </LabelStyle>
                     </PartnerLoginLabelWrapperStyle>
                     <PartnerLoginOptionsWrapperStyle>
                         <PartnerLoginOptionStyle>
@@ -68,10 +67,10 @@ const LoginPage = () => {
                             <PartnerLoginOptionImageStyle source={logo_ln} />
                         </PartnerLoginOptionStyle>
                     </PartnerLoginOptionsWrapperStyle>
-                    <Label size={12} color='grey'>
+                    <LabelStyle size={12} color='grey'>
                         Ainda não possui um login?
-                        <Label color='#DD3F94'>{` cadastre-se :)`}</Label>
-                    </Label>
+                        <LabelStyle color='#DD3F94'>{` cadastre-se :)`}</LabelStyle>
+                    </LabelStyle>
                 </PartnerLoginWrapperStyle>
             </BackgroundImageContainer>
         </ContainerStyle>
@@ -85,7 +84,7 @@ const ContainerStyle = styled(View)`
   align-items: center;
 `;
 
-const Logo = styled(LogoSvg)`
+const Logo = styled(SvgUri)`
     margin-top: 60px;
 `;
 
@@ -125,6 +124,7 @@ const PartnerLoginWrapperStyle = styled.View`
 
 const ButtonStyle = styled(Button)<{isLoading?: boolean}>`
     background-color: #E34D8C;
+    font-size: 24px;
   ${props => props.isLoading && `background-color: #F3EDEF; pointer-events: none;`}
 `;
 

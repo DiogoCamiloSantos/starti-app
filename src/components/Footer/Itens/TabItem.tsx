@@ -1,14 +1,12 @@
 import { View } from "react-native";
+import { SvgUri } from 'react-native-svg';
 import styled from "styled-components/native";
 import { useThemeSelector } from "../../../common/theme/default-theme";
 import IDefaultLayoutSettings from "../../../domain/interfaces/IDefaultLayoutSettings.interface";
 import Label from "../../Label/Label";
 
 const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
-const bar = resolveAssetSource(require('../../../../assets/icons/bar.svg')).uri;
-
 const defaultTabItemDimensions = '36px';
-
 
 const TabItemStyle = styled.View<IDefaultLayoutSettings>`
     background-color: ${props => props.theme.color.primary};
@@ -31,32 +29,35 @@ const TabItemSelectedFlagStyle = styled.View`
     height: 5px;
 `
 
+const SvgUriStyle = styled(SvgUri)` 
+    font-size: 10px;
+`
 
-// function resolveSvg(image: TabItemIcon) {
-//     let required: NodeRequire;
+function resolveSvg(image: TabItemIcon) {
+    let required: NodeRequire;
 
-//     switch (image) {
-//         case "stats":
-//             required = require('../../../../assets/icons/stats.svg');
-//             break;
-//         case "search":
-//             required = require('../../../../assets/icons/book.svg');
-//             break;
-//         case "home":
-//             required = require('../../../../assets/icons/home.svg');
-//             break;
-//         case "chat":
-//             required = require('../../../../assets/icons/chat.svg');
-//             break;
-//         case "profile":
-//             required = require('../../../../assets/icons/profile.svg');
-//             break;
-//         default:
-//             required = require('../../../../assets/icons/house.svg');
-//     }
+    switch (image) {
+        case "stats":
+            required = require('../../../../assets/icons/stats.svg');
+            break;
+        case "search":
+            required = require('../../../../assets/icons/book.svg');
+            break;
+        case "home":
+            required = require('../../../../assets/icons/home.svg');
+            break;
+        case "chat":
+            required = require('../../../../assets/icons/chat.svg');
+            break;
+        case "profile":
+            required = require('../../../../assets/icons/profile.svg');
+            break;
+        default:
+            required = require('../../../../assets/icons/house.svg');
+    }
 
-//     return resolveAssetSource(required).uri;
-// }
+    return resolveAssetSource(required).uri;
+}
 
 export default function TabItem(props: ITabItemProps) {
     const theme = useThemeSelector();
@@ -64,6 +65,7 @@ export default function TabItem(props: ITabItemProps) {
     return (
         <TabItemStyle onTouchEnd={() => props.onSelectedTab()}>
             <WrapperStyle activated={props.activated}>
+                <SvgUriStyle fill={theme.color.font} width={20} uri={resolveSvg(props.icon)} />
             </WrapperStyle>
             <View>
                 <Label>{props.description}</Label>

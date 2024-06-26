@@ -1,2 +1,2 @@
-# it4young
+# Starti
 A study project to apply concepts about React Native, UI/UX, Mobile development, Design Patterns, etc.

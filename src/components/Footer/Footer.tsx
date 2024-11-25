@@ -36,7 +36,6 @@ export default (props: IFooter) => {
     const navigate = (tab: TabPageEnum) => {
 
         props.navigation.navigate(tab);
-        console.log(`teste`);
         
         setActivatedTabIndex(tab);
     };

@@ -104,7 +104,6 @@ const InputStyle = styled(TextInput)`
   background-color: white;
   border-radius: 10px;
   font-size: 16px;
-  padding-horizontal: 10px;
   margin-bottom: 10px;
 
   ${Platform.select({

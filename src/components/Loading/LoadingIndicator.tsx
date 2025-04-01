@@ -8,10 +8,3 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const LoadingIndicator = () => (
-  <Container>
-    <ActivityIndicator size="large" color="#0000ff" /> 
-  </Container>
-);
-
-export default LoadingIndicator;

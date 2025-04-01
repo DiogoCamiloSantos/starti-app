@@ -40,7 +40,7 @@ const NavigationContainerStyle = () => {
 
 export default () => {
     const theme = useThemeSelector();
-    const authentication = useAuthenticationSelector();
+    const authenticated = useAuthenticationSelector();
     const [enable, setEnable] = useState(false);
 
     setTimeout(() => {
@@ -49,8 +49,8 @@ export default () => {
 
     return (
         <ThemeProvider theme={theme}>
-            {!authentication && <LoginPage />}
-            {(authentication && enable)
+            {!authenticated && <LoginPage />}
+            {(authenticated && enable)
                 ? <RouterViewStyle>
                     <NavigationContainerStyle />
                 </RouterViewStyle>

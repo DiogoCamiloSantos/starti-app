@@ -1,6 +1,8 @@
+import { ReducerToggle } from "../Reducers.enum";
+
 const authenticationReducer = (state = null, action: any) => {
   switch (action.type) {
-    case 'TOGGLE_AUTHENTICATION':
+    case ReducerToggle.Authentication:
       return action.payload;
     default:
       return state;
